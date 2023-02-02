@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "1096569234233",
+    "project_id": "reand-e2c65",
+    "storage_bucket": "reand-e2c65.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1096569234233:android:9147068dc8e25a9ad4bee8",
+        "android_client_info": {
+          "package_name": "com.example.planland"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1096569234233-95ms7mk8v7ivn3gdskupicmtca5ftose.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.planland",
+            "certificate_hash": "ea6c38cf3d184d01b5de4961a23db1c55caacd9d"
+          }
+        },
+        {
+          "client_id": "1096569234233-8dba4pbr937ijv573gsq6bqv0q2cs5il.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBlp9yhLVEiDw8u8lanBQp_E0AD0cB_bRo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1096569234233-8dba4pbr937ijv573gsq6bqv0q2cs5il.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

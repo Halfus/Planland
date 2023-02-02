@@ -1,18 +1,17 @@
 package com.example.planland.entity;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 
 public class User {
 
-    private int Id;
+    private String Id;
     private String Username;
     private String Password;
     private String FirstName;
     private String LastName;
     private String Email;
-    private ArrayList<ToDo> FutureToDo;
-    private ArrayList<ToDo> PreviousToDo;
+    private ArrayList<Task> FutureToDo;
+    private ArrayList<Task> PreviousToDo;
 
     /**
      * Empty constructor
@@ -39,7 +38,7 @@ public class User {
      * @param username String containing the username of the user
      * @param password String containing the password of the user
      */
-    public User(int id, String username, String password) {
+    public User(String id, String username, String password) {
         Id = id;
         Username = username;
         Password = password;
@@ -58,7 +57,7 @@ public class User {
      * @param lastName String containing the last name of the user
      * @param email String containing the email of the user
      */
-    public User(int id, String username, String password, String firstName, String lastName, String email) {
+    public User(String id, String username, String password, String firstName, String lastName, String email) {
         Id = id;
         Username = username;
         Password = password;
@@ -79,7 +78,7 @@ public class User {
      * @param futureToDo A list of future tasks
      * @param previousToDo A list of past tasks
      */
-    public User(int id, String username, String password, String firstName, String lastName, String email, ArrayList<ToDo> futureToDo, ArrayList<ToDo> previousToDo) {
+    public User(String id, String username, String password, String firstName, String lastName, String email, ArrayList<Task> futureToDo, ArrayList<Task> previousToDo) {
         Id = id;
         Username = username;
         Password = password;
@@ -90,11 +89,11 @@ public class User {
         PreviousToDo = previousToDo;
     }
 
-    public int getId() {
+    public String getId() {
         return Id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         Id = id;
     }
 
@@ -138,19 +137,19 @@ public class User {
         Email = email;
     }
 
-    public ArrayList<ToDo> getFutureToDo() {
+    public ArrayList<Task> getFutureToDo() {
         return FutureToDo;
     }
 
-    public void setFutureToDo(ArrayList<ToDo> futureToDo) {
+    public void setFutureToDo(ArrayList<Task> futureToDo) {
         FutureToDo = futureToDo;
     }
 
-    public ArrayList<ToDo> getPreviousToDo() {
+    public ArrayList<Task> getPreviousToDo() {
         return PreviousToDo;
     }
 
-    public void setPreviousToDo(ArrayList<ToDo> previousToDo) {
+    public void setPreviousToDo(ArrayList<Task> previousToDo) {
         PreviousToDo = previousToDo;
     }
 
@@ -171,9 +170,9 @@ public class User {
      * Moves completed or old tasks form Future list to Previous list using Collection and Remove
      */
     public void refreshTasks(){
-        ArrayList<ToDo> found = new ArrayList<>();
+        ArrayList<Task> found = new ArrayList<>();
 
-        for (ToDo task:FutureToDo)
+        for (Task task:FutureToDo)
             if(task.isFinished() || !task.isFutureDate(task.getDate()))
                 found.add(task);
 
@@ -186,10 +185,10 @@ public class User {
 //
 //    public void refreshTasks2(){
 //
-//        Iterator<ToDo> i = FutureToDo.listIterator();
+//        Iterator<Task> i = FutureToDo.listIterator();
 //
 //        while (i.hasNext()){
-//            ToDo task = i.next();
+//            Task task = i.next();
 //            if(task.isFinished() || !task.isFutureDate(task.getDate())){
 //                PreviousToDo.add(task);
 //                i.remove(); //Needs testing

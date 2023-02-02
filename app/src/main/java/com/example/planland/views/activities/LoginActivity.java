@@ -16,6 +16,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.planland.entity.User;
 import com.example.planland.viewModels.UserViewModel;
 import com.firebase.ui.auth.AuthUI;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -118,7 +119,7 @@ public class LoginActivity extends AppCompatActivity
                     }
                     else
                     {
-                        /*userViewModel.AddUser(new User(firebaseAuth.getCurrentUser().getUid() ,firebaseAuth.getCurrentUser().getEmail()));*/
+                        userViewModel.AddUser(new User(firebaseAuth.getCurrentUser().getUid() ,firebaseAuth.getCurrentUser().getEmail()));
                         launchMainActivity();
                     }
                 }

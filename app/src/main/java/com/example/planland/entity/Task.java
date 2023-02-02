@@ -2,8 +2,8 @@ package com.example.planland.entity;
 import java.util.Calendar;
 import java.util.Date;
 
-public class ToDo {
-    private int Id;
+public class Task {
+    private String Id;
     private Date date;
     private String Description;
     private int Rank;
@@ -16,13 +16,13 @@ public class ToDo {
     /**
      * Empty Constructor
      */
-    public ToDo() {}
+    public Task() {}
 
     /** Minimum constructor
      * @param date Deadline for the task
      * @param description The description of the task
      */
-    public ToDo( Date date, String description) {
+    public Task(Date date, String description) {
         this.date = validateDate(date);
         Description = description;
         //Outcome =2;
@@ -39,7 +39,7 @@ public class ToDo {
      * @param isPaused Toggle for taking into account current task
      * @param isReminder Toggle for reminders on given task
      */
-    public ToDo(int id, Date date, String description, int rank, boolean isPaused, boolean isReminder) {
+    public Task(String id, Date date, String description, int rank, boolean isPaused, boolean isReminder) {
         Id = id;
         this.date = validateDate(date);
         Description = description;
@@ -50,11 +50,11 @@ public class ToDo {
         this.isReminder = isReminder;
     }
 
-    public int getId() {
+    public String getId() {
         return Id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         Id = id;
     }
 
