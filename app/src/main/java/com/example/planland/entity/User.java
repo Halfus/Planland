@@ -1,6 +1,7 @@
 package com.example.planland.entity;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class User {
 

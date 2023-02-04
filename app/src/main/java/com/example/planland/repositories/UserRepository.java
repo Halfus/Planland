@@ -50,7 +50,7 @@ public class UserRepository implements UserService {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 User u = snapshot.getValue(User.class);
-                System.out.print("User: "+u );
+                System.out.print("User: "+u.toString() );
                 callback.callback(u);
             }
             @Override

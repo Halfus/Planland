@@ -28,6 +28,8 @@ import java.util.Arrays;
 import java.util.List;
 
 import com.example.planland.R;
+import com.google.firebase.auth.FirebaseAuthEmailException;
+import com.google.firebase.auth.FirebaseUser;
 
 public class LoginActivity extends AppCompatActivity
 {
@@ -51,6 +53,7 @@ public class LoginActivity extends AppCompatActivity
     {
         super.onCreate(savedInstanceState);
         firebaseAuth = FirebaseAuth.getInstance();
+
         if (firebaseAuth.getCurrentUser() != null)
         {
             launchMainActivity();
@@ -61,6 +64,13 @@ public class LoginActivity extends AppCompatActivity
         password = findViewById(R.id.textFieldPassword);
 
         userViewModel = new ViewModelProvider(this).get(UserViewModel.class);
+
+    }
+    @Override
+    public void onStart() {
+        super.onStart();
+        // Check if user is signed in (non-null) and update UI accordingly.
+        FirebaseUser currentUser = firebaseAuth.getCurrentUser();
     }
 
     private void launchMainActivity()
@@ -71,7 +81,7 @@ public class LoginActivity extends AppCompatActivity
 
     public void Login(View v)
     {
-        List<AuthUI.IdpConfig> providers = Arrays.asList(
+/*        List<AuthUI.IdpConfig> providers = Arrays.asList(
                 new AuthUI.IdpConfig.EmailBuilder().build()
         );
 
@@ -82,7 +92,24 @@ public class LoginActivity extends AppCompatActivity
                 .setIsSmartLockEnabled(false)
                 .build();
 
-        activityResultLauncher.launch(signInIntent);
+        activityResultLauncher.launch(signInIntent);*/
+        String userEmail = email.getText().toString().trim();
+        String userPassword = password.getText().toString().trim();
+
+        firebaseAuth.signInWithEmailAndPassword(userEmail, userPassword)
+                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+                            // Sign in success, update UI with the signed-in user's information
+                            Log.d(TAG, "signInWithEmail:success");
+                            FirebaseUser user = firebaseAuth.getCurrentUser();
+                            launchMainActivity();
+                        } else {
+                            ShowToast("Authentication failed.");
+                        }
+                    }
+                });
     }
 
     public void Register(View view)
@@ -115,7 +142,9 @@ public class LoginActivity extends AppCompatActivity
                     Log.d(TAG, "Registered new user. " + task.isSuccessful());
                     if (!task.isSuccessful())
                     {
+                        FirebaseUser user = firebaseAuth.getCurrentUser();
                         ShowToast("Authentication failed. " + task.getException());
+                        Log.d(TAG, "Authentication failed. " + task.getException());
                     }
                     else
                     {
