@@ -50,7 +50,7 @@ public class MainActivity extends AppCompatActivity
             boolean emailVerified = currentUser.isEmailVerified();
 
             if(name!=null)
-                ShowToast("Hello "+name);
+                ShowToast("Hello there "+name);
             else
                 ShowToast("Hello robot "+uid);
 

@@ -11,8 +11,8 @@ public class User {
     private String FirstName;
     private String LastName;
     private String Email;
-    private ArrayList<Task> FutureToDo;
-    private ArrayList<Task> PreviousToDo;
+    private List<Task> FutureToDo;
+    private List<Task> PreviousToDo;
 
     /**
      * Empty constructor
@@ -138,19 +138,19 @@ public class User {
         Email = email;
     }
 
-    public ArrayList<Task> getFutureToDo() {
+    public List<Task> getFutureToDo() {
         return FutureToDo;
     }
 
-    public void setFutureToDo(ArrayList<Task> futureToDo) {
+    public void setFutureToDo(List<Task> futureToDo) {
         FutureToDo = futureToDo;
     }
 
-    public ArrayList<Task> getPreviousToDo() {
+    public List<Task> getPreviousToDo() {
         return PreviousToDo;
     }
 
-    public void setPreviousToDo(ArrayList<Task> previousToDo) {
+    public void setPreviousToDo(List<Task> previousToDo) {
         PreviousToDo = previousToDo;
     }
 

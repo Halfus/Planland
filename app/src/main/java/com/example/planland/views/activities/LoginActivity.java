@@ -148,7 +148,7 @@ public class LoginActivity extends AppCompatActivity
                     }
                     else
                     {
-                        userViewModel.AddUser(new User(firebaseAuth.getCurrentUser().getUid() ,firebaseAuth.getCurrentUser().getEmail()));
+                        userViewModel.AddUser(new User(firebaseAuth.getCurrentUser().getUid() ,firebaseAuth.getCurrentUser().getEmail(),"secret"));
                         launchMainActivity();
                     }
                 }
