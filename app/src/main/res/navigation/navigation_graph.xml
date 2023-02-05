@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation_graph"
+    app:startDestination="@+id/nav_home">
+    <fragment
+        android:id="@+id/nav_home"
+        android:name="com.example.planland.views.fragments.mainFragments.HomeFragment"
+        android:label="@string/app_name"
+        tools:layout="@layout/fragment_home"/>
+    <fragment
+        android:id="@+id/nav_settings"
+        android:name="com.example.planland.views.fragments.mainFragments.SettingsFragment"
+        android:label="@string/app_name"
+        tools:layout="@layout/fragment_settings">
+        <action
+            android:id="@+id/action_change_profile_picture" />
+        <action
+            android:id="@+id/action_change_displayed_name" />
+        <action
+            android:id="@+id/action_dark_mode" />
+        <action
+            android:id="@+id/action_change_font" />
+        <action
+            android:id="@+id/action_push_notifications" />
+        <action
+            android:id="@+id/action_set_pause_mode" />
+    </fragment>
+    <fragment
+        android:id="@+id/nav_to_do_list"
+        android:name="com.example.planland.views.fragments.mainFragments.ToDoListFragment"
+        android:label="@string/app_name"
+        tools:layout="@layout/fragment_to_do_list"/>
+    <fragment
+        android:id="@+id/nav_new_to_do"
+        android:name="com.example.planland.views.fragments.mainFragments.NewToDoFragment"
+        android:label="@string/app_name"
+        tools:layout="@layout/fragment_new_to_do"/>
+    <fragment
+        android:id="@+id/nav_edit_to_do"
+        android:name="com.example.planland.views.fragments.mainFragments.EditToDoFragment"
+        android:label="@string/app_name"
+        tools:layout="@layout/fragment_edit_to_do"/>
+    <fragment
+        android:id="@+id/nav_calendar"
+        android:name="com.example.planland.views.fragments.mainFragments.CalendarFragment"
+        android:label="@string/app_name"
+        tools:layout="@layout/fragment_calendar"/>
+    <fragment
+        android:id="@+id/nav_recap"
+        android:name="com.example.planland.views.fragments.mainFragments.RecapFragment"
+        android:label="@string/app_name"
+        tools:layout="@layout/fragment_recap"/>
+    <fragment
+        android:id="@+id/nav_register"
+        android:name="com.example.planland.views.fragments.loginFragments.RegisterFragment"
+        android:label="@string/app_name"
+        tools:layout="@layout/fragment_register"/>
+</navigation>
