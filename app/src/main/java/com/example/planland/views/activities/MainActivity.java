@@ -171,7 +171,7 @@ public class MainActivity extends AppCompatActivity
     private void navSetup() {
         navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         appBarConfiguration = new AppBarConfiguration.Builder(R.id.nav_home, R.id.nav_to_do_list,
-                R.id.nav_calendar, R.id.nav_recap, R.id.nav_settings).setOpenableLayout(drawerLayout).build();
+                R.id.nav_calendar, R.id.nav_recap, R.id.nav_settings, R.id.nav_logout).setOpenableLayout(drawerLayout).build();
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
     }
