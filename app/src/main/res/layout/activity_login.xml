@@ -6,6 +6,8 @@
     android:layout_height="match_parent"
     tools:context=".views.activities.LoginActivity">
 
+
+
     <TextView
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
@@ -22,18 +24,18 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="New user?"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/buttonRegister"
-        app:layout_constraintHorizontal_bias="0.611"
+        app:layout_constraintBottom_toTopOf="@+id/buttonRegister"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.56" />
+        app:layout_constraintTop_toBottomOf="@+id/buttonLogin"
+        app:layout_constraintVertical_bias="0.787" />
 
     <TextView
         android:id="@+id/textView5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="116dp"
+        android:layout_marginTop="84dp"
         android:text="Use other methods."
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -43,13 +45,13 @@
         android:id="@+id/buttonRegister"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="60dp"
         android:onClick="Register"
         android:text="REGISTER NOW"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/buttonLogin"
-        app:layout_constraintVertical_bias="0.204" />
+        app:layout_constraintVertical_bias="0.224" />
 
     <Button
         android:id="@+id/buttonLogin"
@@ -69,34 +71,34 @@
         android:id="@+id/buttonFacebook"
         android:layout_width="120dp"
         android:layout_height="54dp"
-        android:layout_marginStart="72dp"
+        android:layout_marginEnd="76dp"
         android:onClick="Login"
         android:text="Facebook"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView5"
-        app:layout_constraintVertical_bias="0.41" />
+        app:layout_constraintVertical_bias="0.189" />
 
     <Button
         android:id="@+id/buttonGoogle"
         android:layout_width="120dp"
         android:layout_height="54dp"
-        android:layout_marginEnd="76dp"
-        android:layout_marginBottom="28dp"
+        android:layout_marginStart="72dp"
         android:onClick="Login"
         android:text="Google"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/buttonFacebook"
+        app:layout_constraintEnd_toStartOf="@+id/buttonFacebook"
+        app:layout_constraintHorizontal_bias="0.085"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView5"
-        app:layout_constraintVertical_bias="0.547" />
+        app:layout_constraintVertical_bias="0.189" />
 
     <EditText
         android:id="@+id/textFieldPassword"
         android:layout_width="260dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
+        android:autofillHints=""
         android:ems="10"
         android:hint="Password"
         android:inputType="textPassword"
@@ -105,8 +107,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textFieldEmail"
-        android:autofillHints="" />
+        app:layout_constraintTop_toBottomOf="@+id/textFieldEmail" />
 
     <TextView
         android:id="@+id/textView2"
@@ -134,5 +135,7 @@
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

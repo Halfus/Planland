@@ -67,8 +67,6 @@ public class UserRepository implements UserService {
     @Override
     public void AddUser(User user) {
 
-        //usersReference.setValue(new User("Test","12345678"));
-        //usersReference.child("users").child(user.getId()).child("name").setValue(user.getFirstName());
         usersReference.child(user.getId()).setValue(user);
     }
     @Override

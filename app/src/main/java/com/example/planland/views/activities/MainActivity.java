@@ -10,6 +10,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -25,6 +26,8 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.example.planland.R;
+import com.example.planland.entity.User;
+import com.example.planland.viewModels.UserViewModel;
 import com.example.planland.views.fragments.mainFragments.CalendarFragment;
 import com.example.planland.views.fragments.mainFragments.HomeFragment;
 import com.example.planland.views.fragments.mainFragments.RecapFragment;
@@ -37,6 +40,9 @@ import com.google.firebase.auth.FirebaseUser;
 
 public class MainActivity extends AppCompatActivity
 {
+
+    private UserViewModel userViewModel;
+
     private FirebaseAuth firebaseAuth;
     private FirebaseAuth.AuthStateListener fireAuthListener;
 
@@ -56,6 +62,7 @@ public class MainActivity extends AppCompatActivity
         drawerLayout = findViewById(R.id.drawer_layout);
         navigationView = findViewById(R.id.nav_view);
 
+        userViewModel = new ViewModelProvider(this).get(UserViewModel.class);
 
         /*navigationView.setNavigationItemSelectedListener(this);
 
@@ -112,7 +119,7 @@ public class MainActivity extends AppCompatActivity
         fireAuthListener= firebaseAuth -> {
             if(firebaseAuth.getCurrentUser()==null){
                 // TODO: Uncomment before pushing changes!
-                //startActivity(new Intent(MainActivity.this, LoginActivity.class));
+                startActivity(new Intent(MainActivity.this, LoginActivity.class));
                 finish();
             }
         };
@@ -125,22 +132,26 @@ public class MainActivity extends AppCompatActivity
         super.onStart();
         // Check if user is signed in (non-null) and update UI accordingly.
         // TODO: Uncomment before pushing changes!
-        /*FirebaseUser currentUser = firebaseAuth.getCurrentUser();
+        FirebaseUser currentUser = firebaseAuth.getCurrentUser();
         if(currentUser != null){
+            //Getting user data from firebaseAuth
             String name = currentUser.getDisplayName();
+            String names[] = name.split(" ",2);
+            String Fname=names[0];
+            String Lname=names[1];
             String uid = currentUser.getUid();
             String email = currentUser.getEmail();
-            Uri photoUrl = currentUser.getPhotoUrl();
-            boolean emailVerified = currentUser.isEmailVerified();
 
+            //Only new users weill be added due to the UID Pk already being in use
+            userViewModel.AddUser(new User(currentUser.getUid(),name,"secret", Fname,Lname,email));
             if(name!=null)
-                ShowToast("Hello there "+name);
+                ShowToast("Hello there "+Fname);
             else
                 ShowToast("Hello robot "+uid);
         }else{
             startActivity(new Intent(MainActivity.this, LoginActivity.class));
             finish();
-        }*/
+        }
     }
 
     public void ShowToast(String toastText)
@@ -156,34 +167,6 @@ public class MainActivity extends AppCompatActivity
         fragmentTransaction.commit();
     }
 
-    /*@Override
-    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.nav_home:
-                Navigation.findNavController(this, R.id.nav_host_fragment).navigate(R.id.nav_home);
-                //Toast.makeText(MainActivity.this, "Home Test", Toast.LENGTH_SHORT).show();
-                break;
-            case R.id.nav_to_do_list:
-                Navigation.findNavController(this, R.id.nav_host_fragment).navigate(R.id.nav_to_do_list);
-                //Toast.makeText(MainActivity.this, "Todo List Test", Toast.LENGTH_SHORT).show();
-                break;
-            case R.id.nav_calendar:
-                Navigation.findNavController(this, R.id.nav_host_fragment).navigate(R.id.nav_calendar);
-                //Toast.makeText(MainActivity.this, "Calendar Test", Toast.LENGTH_SHORT).show();
-                break;
-            case R.id.nav_recap:
-                Navigation.findNavController(this, R.id.nav_host_fragment).navigate(R.id.nav_recap);
-                //Toast.makeText(MainActivity.this, "Recap Test", Toast.LENGTH_SHORT).show();
-                break;
-            case R.id.nav_settings:
-                Navigation.findNavController(this, R.id.nav_host_fragment).navigate(R.id.nav_settings);
-                //Toast.makeText(MainActivity.this, "Settings Test", Toast.LENGTH_SHORT).show();
-                break;
-        }
-        item.setChecked(true);
-        drawerLayout.closeDrawer(GravityCompat.START);
-        return true;
-    }*/
 
     private void navSetup() {
         navController = Navigation.findNavController(this, R.id.nav_host_fragment);
@@ -214,4 +197,5 @@ public class MainActivity extends AppCompatActivity
         else
             super.onBackPressed();
     }
+
 }

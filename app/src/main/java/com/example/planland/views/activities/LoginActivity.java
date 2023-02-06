@@ -30,6 +30,7 @@ import com.example.planland.views.fragments.mainFragments.SettingsFragment;
 import com.firebase.ui.auth.AuthUI;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
@@ -107,18 +108,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     public void Login(View v)
     {
-/*        List<AuthUI.IdpConfig> providers = Arrays.asList(
-                new AuthUI.IdpConfig.EmailBuilder().build()
-        );
 
-        Intent signInIntent = AuthUI.getInstance()
-                .createSignInIntentBuilder()
-                .setAvailableProviders(providers)
-                .setLogo(R.mipmap.ic_launcher_round)
-                .setIsSmartLockEnabled(false)
-                .build();
-
-        activityResultLauncher.launch(signInIntent);*/
         String userEmail = email.getText().toString().trim();
         String userPassword = password.getText().toString().trim();
 
@@ -140,13 +130,26 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     public void Register(View view)
     {
+        List<AuthUI.IdpConfig> providers = Arrays.asList(
+                new AuthUI.IdpConfig.EmailBuilder().build()
+        );
+
+        Intent signInIntent = AuthUI.getInstance()
+                .createSignInIntentBuilder()
+                .setAvailableProviders(providers)
+                .setLogo(R.mipmap.ic_launcher_round)
+                .setIsSmartLockEnabled(false)
+                .build();
+        activityResultLauncher.launch(signInIntent);
+/*
+
         FragmentManager manager = getSupportFragmentManager();
         FragmentTransaction transaction = manager.beginTransaction();
         transaction.add(com.firebase.ui.auth.R.id.container, new RegisterFragment());
         transaction.addToBackStack(null);
         transaction.commit();
 
-        /*String userEmail = email.getText().toString().trim();
+        String userEmail = email.getText().toString().trim();
         String userPassword = password.getText().toString().trim();
 
         if (TextUtils.isEmpty(userEmail))
@@ -197,20 +200,31 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     {
         if(view.getId() == R.id.buttonLogin)
         {
-
+            String userEmail = email.getText().toString().trim();
+            String userPassword = password.getText().toString().trim();
+            if(userEmail!=null && !userEmail.trim().isEmpty())
+                if(userPassword!=null&& !userPassword.trim().isEmpty())
+                    Login(view);
+                else
+                    ShowToast("Please enter a password");
+            else
+                ShowToast("Pleas enter an email");
         }
         else if(view.getId() == R.id.buttonRegister)
         {
-            /*getSupportFragmentManager().beginTransaction().
-                    replace(com.firebase.ui.auth.R.id.container, new RegisterFragment()).commit();*/
+            Register(view);
+            //getSupportFragmentManager().beginTransaction().
+            //        replace(com.firebase.ui.auth.R.id.container, new RegisterFragment()).commit();
         }
         else if(view.getId() == R.id.buttonFacebook)
         {
-            // Todo: Anything to happen on Facebook click?
+            Snackbar.make(view,"Facebook authentication has been disabled by developer",Snackbar.LENGTH_LONG)
+                    .setAction("Action",null).show();
         }
         else if(view.getId() == R.id.buttonGoogle)
         {
-            // Todo: Anything to happen on Google click?
+            Snackbar.make(view,"Google authentication has been disabled by developer",Snackbar.LENGTH_LONG)
+                    .setAction("Action",null).show();
         }
     }
 }
