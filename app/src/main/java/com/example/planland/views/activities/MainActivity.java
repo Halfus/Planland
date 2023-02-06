@@ -38,8 +38,7 @@ import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-public class MainActivity extends AppCompatActivity
-{
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     private UserViewModel userViewModel;
 
@@ -64,7 +63,7 @@ public class MainActivity extends AppCompatActivity
 
         userViewModel = new ViewModelProvider(this).get(UserViewModel.class);
 
-        /*navigationView.setNavigationItemSelectedListener(this);
+        navigationView.setNavigationItemSelectedListener(this);
 
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar,
                 R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -75,44 +74,14 @@ public class MainActivity extends AppCompatActivity
             getSupportFragmentManager().beginTransaction().replace(R.id.frameLayout,
                     new HomeFragment()).commit();
             navigationView.setCheckedItem(R.id.nav_home);
-        }*/
+        }
 
+        toolbar.setNavigationOnClickListener(view -> drawerLayout.openDrawer(GravityCompat.START));
 
-
-
-
-        /*toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                drawerLayout.openDrawer(GravityCompat.START);
-            }
-        });
-        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener()
-        {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull @org.jetbrains.annotations.NotNull MenuItem item)
-            {
-                int id = item.getItemId();
-                item.setChecked(true);
-                drawerLayout.closeDrawer(GravityCompat.START);
-                switch(id)
-                {
-                    case R.id.nav_home:
-                        userViewModel.LogOut();
-                        firebaseAuth.signOut();
-                        startActivity(new Intent(MainActivity.this, LoginActivity.class));
-                        finish();
-                        break;
-                    default:
-                        return true;
-                }
-                return true;
-            }
-        });*/
 
         //LOGOUT
         navigationView.getMenu().findItem(R.id.nav_logout).setOnMenuItemClickListener(menuItem -> {
-            Toast.makeText(this, "Logout button pressed!", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "Goodbye", Toast.LENGTH_LONG).show();
             userViewModel.LogOut();
             firebaseAuth.signOut();
             startActivity(new Intent(MainActivity.this, LoginActivity.class));
@@ -123,7 +92,6 @@ public class MainActivity extends AppCompatActivity
         firebaseAuth =FirebaseAuth.getInstance();
         fireAuthListener= firebaseAuth -> {
             if(firebaseAuth.getCurrentUser()==null){
-                // TODO: Uncomment before pushing changes!
                 startActivity(new Intent(MainActivity.this, LoginActivity.class));
                 finish();
             }
@@ -136,7 +104,7 @@ public class MainActivity extends AppCompatActivity
     public void onStart() {
         super.onStart();
         // Check if user is signed in (non-null) and update UI accordingly.
-        // TODO: Uncomment before pushing changes!
+
         FirebaseUser currentUser = firebaseAuth.getCurrentUser();
         if(currentUser != null){
             //Getting user data from firebaseAuth
@@ -204,4 +172,9 @@ public class MainActivity extends AppCompatActivity
     }
 
 
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+
+        return onNavigationItemSelected(item);
+    }
 }

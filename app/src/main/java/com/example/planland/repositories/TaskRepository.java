@@ -24,7 +24,7 @@ public class TaskRepository implements TaskService {
     private final DatabaseReference taskRef;
 
     private TaskRepository(){
-        taskRef = FirebaseDatabase.getInstance("https://reand-e2c65-default-rtdb.europe-west1.firebasedatabase.app/").getReference("tasks"); //TODO Different change according to your firebase
+        taskRef = FirebaseDatabase.getInstance("https://reand-e2c65-default-rtdb.europe-west1.firebasedatabase.app/").getReference("tasks"); //europe-west1 firebase requires the full URL as a parameter
     }
     //Singleton
     public static TaskRepository getInstance(){

@@ -48,24 +48,24 @@ public class ToDoListFragment extends Fragment
 
     @Override
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
-                positionToBeChanged = position;
-                //Todo: todos are to do
-            }
-        });
-
-        buttonNewToDo.setOnClickListener(new View.OnClickListener() {
-            @RequiresApi(api = Build.VERSION_CODES.O)
-            @Override
-            public void onClick(View view) {
-                NavHostFragment.findNavController(new NewToDoFragment())
-                        .navigate(R.id.action_TodoList_to_NewToDo);
-            }
-        });
-        registerForContextMenu(listView);
+//        super.onViewCreated(view, savedInstanceState);
+//
+//        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//            @Override
+//            public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
+//                positionToBeChanged = position;
+//                //Todo: todos are to do
+//            }
+//        });
+//
+//        buttonNewToDo.setOnClickListener(new View.OnClickListener() {
+//            @RequiresApi(api = Build.VERSION_CODES.O)
+//            @Override
+//            public void onClick(View view) {
+//                NavHostFragment.findNavController(new NewToDoFragment())
+//                        .navigate(R.id.action_TodoList_to_NewToDo);
+//            }
+//        });
+//        registerForContextMenu(listView);
     }
 }

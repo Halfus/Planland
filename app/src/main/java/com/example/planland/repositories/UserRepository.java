@@ -22,7 +22,7 @@ public class UserRepository implements UserService {
     private final DatabaseReference usersReference;
 
     private UserRepository(){
-        usersReference = FirebaseDatabase.getInstance("https://reand-e2c65-default-rtdb.europe-west1.firebasedatabase.app/").getReference("users"); //TODO Different change according to your firebase
+        usersReference = FirebaseDatabase.getInstance("https://reand-e2c65-default-rtdb.europe-west1.firebasedatabase.app/").getReference("users"); //europe-west1 firebase requires the full URL as a parameter
     }
 
     //Singleton
@@ -37,7 +37,7 @@ public class UserRepository implements UserService {
         return instance;
     }
 
-    //Maybe remove?
+    //Firebase authentication dose not require such a method
     @Override
     public User LoginCredentials(String username, String password) {
         return null;
@@ -58,7 +58,7 @@ public class UserRepository implements UserService {
             }
         });
     }
-    //TODO: Implement
+    //We have no need to get user by Username during authentication with Firebase
     @Override
     public User GetUserByUsername(String username) {
         return null;

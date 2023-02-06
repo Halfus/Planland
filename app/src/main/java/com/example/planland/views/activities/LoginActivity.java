@@ -141,53 +141,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 .setIsSmartLockEnabled(false)
                 .build();
         activityResultLauncher.launch(signInIntent);
-/*
-
-        FragmentManager manager = getSupportFragmentManager();
-        FragmentTransaction transaction = manager.beginTransaction();
-        transaction.add(com.firebase.ui.auth.R.id.container, new RegisterFragment());
-        transaction.addToBackStack(null);
-        transaction.commit();
-
-        String userEmail = email.getText().toString().trim();
-        String userPassword = password.getText().toString().trim();
-
-        if (TextUtils.isEmpty(userEmail))
-        {
-            ShowToast("Email field is empty!");
-            return;
-        }
-        if(TextUtils.isEmpty(userPassword))
-        {
-            ShowToast("Password field is empty!");
-            return;
-        }
-        if(userPassword.length() < 8)
-        {
-            ShowToast("Password must be minimum 8 characters!");
-            return;
-        }
-
-        firebaseAuth.createUserWithEmailAndPassword(userEmail,userPassword)
-            .addOnCompleteListener(this, new OnCompleteListener<AuthResult>()
-            {
-                @Override
-                public void onComplete(@NonNull Task<AuthResult> task)
-                {
-                    Log.d(TAG, "Registered new user. " + task.isSuccessful());
-                    if (!task.isSuccessful())
-                    {
-                        FirebaseUser user = firebaseAuth.getCurrentUser();
-                        ShowToast("Authentication failed. " + task.getException());
-                        Log.d(TAG, "Authentication failed. " + task.getException());
-                    }
-                    else
-                    {
-                        userViewModel.AddUser(new User(firebaseAuth.getCurrentUser().getUid() ,firebaseAuth.getCurrentUser().getEmail(),"secret"));
-                        launchMainActivity();
-                    }
-                }
-            });*/
     }
 
     public void ShowToast(String toastText)
@@ -202,6 +155,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         {
             String userEmail = email.getText().toString().trim();
             String userPassword = password.getText().toString().trim();
+            //Deal wit missing user input
             if(userEmail!=null && !userEmail.trim().isEmpty())
                 if(userPassword!=null&& !userPassword.trim().isEmpty())
                     Login(view);
@@ -213,8 +167,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         else if(view.getId() == R.id.buttonRegister)
         {
             Register(view);
-            //getSupportFragmentManager().beginTransaction().
-            //        replace(com.firebase.ui.auth.R.id.container, new RegisterFragment()).commit();
         }
         else if(view.getId() == R.id.buttonFacebook)
         {
