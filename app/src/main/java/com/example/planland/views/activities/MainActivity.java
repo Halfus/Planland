@@ -81,7 +81,7 @@ public class MainActivity extends AppCompatActivity
 
 
 
-        /*toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 drawerLayout.openDrawer(GravityCompat.START);
@@ -98,21 +98,17 @@ public class MainActivity extends AppCompatActivity
                 switch(id)
                 {
                     case R.id.nav_home:
-                        replaceFragment(new HomeFragment()); break;
-                    case R.id.nav_to_do_list:
-                        replaceFragment(new ToDoListFragment()); break;
-                    case R.id.nav_calendar:
-                        replaceFragment(new CalendarFragment()); break;
-                    case R.id.nav_recap:
-                        replaceFragment(new RecapFragment()); break;
-                    case R.id.nav_settings:
-                        replaceFragment(new SettingsFragment()); break;
+                        userViewModel.LogOut();
+                        firebaseAuth.signOut();
+                        startActivity(new Intent(MainActivity.this, LoginActivity.class));
+                        finish();
+                        break;
                     default:
                         return true;
                 }
                 return true;
             }
-        });*/
+        });
 
 
         firebaseAuth =FirebaseAuth.getInstance();
@@ -197,5 +193,6 @@ public class MainActivity extends AppCompatActivity
         else
             super.onBackPressed();
     }
+
 
 }
