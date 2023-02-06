@@ -31,7 +31,11 @@
         android:id="@+id/nav_to_do_list"
         android:name="com.example.planland.views.fragments.mainFragments.ToDoListFragment"
         android:label="@string/app_name"
-        tools:layout="@layout/fragment_to_do_list"/>
+        tools:layout="@layout/fragment_to_do_list">
+        <action
+            android:id="@+id/action_TodoList_to_NewToDo"
+            app:destination="@id/nav_new_to_do" />
+    </fragment>
     <fragment
         android:id="@+id/nav_new_to_do"
         android:name="com.example.planland.views.fragments.mainFragments.NewToDoFragment"
