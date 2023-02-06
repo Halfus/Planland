@@ -112,7 +112,7 @@ public class MainActivity extends AppCompatActivity
         fireAuthListener= firebaseAuth -> {
             if(firebaseAuth.getCurrentUser()==null){
                 // TODO: Uncomment before pushing changes!
-                //startActivity(new Intent(MainActivity.this, LoginActivity.class));
+                startActivity(new Intent(MainActivity.this, LoginActivity.class));
                 finish();
             }
         };
@@ -125,7 +125,7 @@ public class MainActivity extends AppCompatActivity
         super.onStart();
         // Check if user is signed in (non-null) and update UI accordingly.
         // TODO: Uncomment before pushing changes!
-        /*FirebaseUser currentUser = firebaseAuth.getCurrentUser();
+        FirebaseUser currentUser = firebaseAuth.getCurrentUser();
         if(currentUser != null){
             String name = currentUser.getDisplayName();
             String uid = currentUser.getUid();
@@ -140,7 +140,7 @@ public class MainActivity extends AppCompatActivity
         }else{
             startActivity(new Intent(MainActivity.this, LoginActivity.class));
             finish();
-        }*/
+        }
     }
 
     public void ShowToast(String toastText)
