@@ -81,7 +81,7 @@ public class MainActivity extends AppCompatActivity
 
 
 
-        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+        /*toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 drawerLayout.openDrawer(GravityCompat.START);
@@ -108,8 +108,17 @@ public class MainActivity extends AppCompatActivity
                 }
                 return true;
             }
-        });
+        });*/
 
+        //LOGOUT
+        navigationView.getMenu().findItem(R.id.nav_logout).setOnMenuItemClickListener(menuItem -> {
+            Toast.makeText(this, "Logout button pressed!", Toast.LENGTH_LONG).show();
+            userViewModel.LogOut();
+            firebaseAuth.signOut();
+            startActivity(new Intent(MainActivity.this, LoginActivity.class));
+            finish();
+            return true;
+        });
 
         firebaseAuth =FirebaseAuth.getInstance();
         fireAuthListener= firebaseAuth -> {
